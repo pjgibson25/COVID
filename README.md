@@ -1,54 +1,34 @@
-﻿# COVID19_timeseries_bycounty
+﻿# COVID19
 Limited to United States counties afflicted by COVID.  Updated every day approximately 9:00am EST.
 
 
-### The Purpose
-Many sources have done extrodinarily well to track the spread of coronavirus amidst this pandemic.
-One data gap that I have noticed is a database that tracks the spread of coronavirus through American counties over time.  
+### Important Files
+<b> ALL_FIPS_datetime_cases.csv </b> 
+<ul> <li> nx3 data table with columns: FIPS, datetime, # of cases </li> </ul>
+<b> Location_key.csv </b>
+<ul> <li> 3232x7 data table with columns: FIPS, County, State, Country, Latitude, Longitude, Flag </li>
+<li>  Flag indicates whether or not there has been a recorded data point.  1 indicates data present. 0 indicates no data.</li> </ul>
 
-### The Background
-John's Hopkins was able to capture this information but as far as I can tell, after March 9th, they switched to tracking data on a state-scale instead of on a county-scale.    Recently, the New York Times has published a daily update that indicates new statistics on COVID cases by county.  As far as I can tell, New York Times has yet to publish a cohesive dataset.  They only update the counts.
+### Background
+John's Hopkins University has case counts on a county level leading to March 9th, but not for following dates.
+New York Times posts a live count of corona cases by county, but does not post previous data
 
-My goal is to use:
+By combining JHU data with the New York Times count that I scrape daily, I will log data on a county level over a time-series that is likely present somewhere but currently unaccessable.
+
+### Methodology
 <ul>
-<li>John's Hopkins Dataset for timestamps leading to March 9th.</li>
-<li>New York Times Daily Updates for timestamps of March 24th moving forward.</li>
-</ul>
+<li>  FIPS tags found online </li>
+<li>  Latitude and Longitude calculated from averaging cencus tract coordinates within a county.  (converted to cartesian & averaged) </li>
+<li>  Currently, NYT updates copy and pasted into CSV then analyzed in python </li>
+<li>  Data points in NYT with unrecognizable locations dropped from dataset (ex: Unknown, Arkansas  -  Recorded in NYT update)  </li>
+</ul> 
 
-### The Methodology
-My methods are fairly straightforward.
-<ol>
-  <li>I will copy the John's Hopkins Dataset for dates leading up to March 9th.</li>
-  <li>I will create a CSV file for data from each date starting from March 24th moving forward.  This will be captured from the New York Times: "Coronavirus in the U.S.: Latest Map and Case Count"</li>
-  <ul>
-    <li>Initially this will be copy/paste.
-      I hope to change to using a python scraping method</li>
-    <li>Beginning on March 25th, I will record a screenshot of the timestamp used when copying this daily update. </li>
-  </ul>
-</ol>
 
 ### Potential FAQs
 
 <b>Question:  Why do we not have data for dates between March 9th and March 24th?</b>
 
 Answer:  I began this project on March 24th and the only way to find county data (to my knowledge) is to ask county departments directly.  I believe that John's Hopkins University may have halted county data due to overwhelmed county health departments, but that is a personal conjecture.
-
-
-<b>Question:  Why did you not begin with a webscraping method of capturing new data?</b>
-
-Answer:  At first, I was only familiar with webscraping using Python's Selenium package.  Due to New York Time's solid security system, I was unable to use this due to the company's bot-protection security measures.  Smart.
-
-
-<b>Question:  What happends when a county all of a sudden sprouts a new case?</b>
-
-Answer:  I create a new data row and assume that all previous dates has a 0 case count.
-
-
-
-<b>Question:  Is pjgibson25 single?</b>
-
-Answer:  No, he's in a committed relationship.
-
 
 
 ## Sources:
