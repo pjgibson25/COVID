@@ -1,4 +1,10 @@
-﻿# COVID19
+# UPDATE:  
+One day after publishing the<b> ALL_FIPS_datetime_cases.csv </b> file, New York Times released their more complete version of county data over time.  Please see the following link for their more robust data set:  https://github.com/nytimes/covid-19-data
+
+##  Daily Updates no longer captured, see link above for data.
+ 
+ 
+ # COVID19
 Limited to United States counties afflicted by COVID.  Updated every day approximately 9:00am EST.
 
 
